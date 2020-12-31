@@ -1,0 +1,33 @@
+.contenedor {
+  display: flex;
+}
+.contenedor .lista {
+  display: flex;
+  flex-direction: column;
+}
+.contenedor .lista h1 {
+  margin-left: 20px;
+}
+.contenedor .lista input {
+  margin-left: 20px;
+  height: 25px;
+}
+.contenedor .lista mat-card {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 500px;
+  border: 1px;
+}
+.contenedor .lista img {
+  width: 500px;
+  height: auto;
+}
+.contenedor .lista button {
+  width: 500px;
+}
+.contenedor .result {
+  display: flex;
+}
+.contenedor .result .calories {
+  display: inline block;
+}

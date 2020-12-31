@@ -1,4 +1,55 @@
-const foods: Object[] = [
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+
+
+@Component({
+  selector: 'app-food-list',
+  templateUrl: './food-list.component.html',
+  styleUrls: ['./food-list.component.scss']
+})
+export class FoodListComponent implements OnInit {
+
+  foodForm = new FormGroup({
+    foodName: new FormControl(''),
+    foodCalories: new FormControl('')
+  })
+
+  AddNewFood(foodName: any , foodCalories:any): void {
+
+    const alimento = {
+      name : foodName.value,
+      calories : foodCalories.value,
+      image: 'https://picsum.photos/200/200',
+      quantity:0
+    }
+    this.foods.push(alimento);
+
+  }
+
+  ngOnInit(): void {
+  }
+
+DailyMenu=[];
+units = 1;
+totalCalories= 0;
+
+sum(calories:number, foodName:string, units: number):void{
+this.totalCalories += Number(calories);
+let exist=false;
+for (let menu of this. DailyMenu){
+  if(menu.name === foodName) {
+    exist=true;
+    menu.units += units;
+    break;
+  }
+}
+if(!exist){
+  this.DailyMenu.push({'name':foodName, 'calories':calories, 'units':units});
+
+}
+}
+
+foods = [
     {
       name: "Pizza",
       calories: 400,
@@ -96,6 +147,8 @@ const foods: Object[] = [
       quantity: 0
     }
   ]
-  
-  export default foods;
-  
+  constructor() { }
+  filterPost  = '';
+
+
+}

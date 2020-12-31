@@ -1,0 +1,51 @@
+<div class='contenedor'>
+
+  <div class="lista">
+
+    <h1>LOOK FOR A SUPER FOOD</h1>
+
+    <form class="form">
+      <input type="text" placeholder="Search for a super food" name="filterPost" [(ngModel)]="filterPost" />
+    </form>
+
+    <h1>ADD A NEW SUPER FOOD</h1>
+
+    <form [formGroup]="foodForm">
+
+      <input required type="text" #foodName class="form-control" formControlName="foodName" placeholder="Food Name">
+      <input required type="text" #foodCalories class="form-control" formControlName="foodCalories"
+        placeholder="Food Calories">
+
+    </form>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="sumbit" (ngSubmit)="AddNewFood(foodName,foodCalories)">ADD SUPER
+        FOOD</button>
+    </mat-card-actions>
+
+    {{foodForm.value | json}}
+
+    <mat-card class="section" *ngFor="let food of foods | filter: filterPost">
+      <mat-card-header>
+        <mat-card-title>{{ food.name }}</mat-card-title>
+        <mat-card-subtitle>{{ food.calories }}</mat-card-subtitle>
+      </mat-card-header>
+      <img src="{{ food.image }}" alt="" />
+      <mat-card-content>
+        <h3>{{ food.quantity }}</h3>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click)="sum(food.calories, food.name, units)">AÑADIR</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class='result'>
+    <mat-card class="calories">
+      <mat-card-title>Total: {{totalCalories}} calories</mat-card-title>
+      <mat-card-subtitle *ngFor="let menu of DailyMenu">
+        {{menu.name}} x {{menu.units}}: {{menu.calories * menu.units}}
+      </mat-card-subtitle>
+    </mat-card>
+  </div>
+</div>
